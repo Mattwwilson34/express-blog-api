@@ -2,7 +2,7 @@
 const User = require('../models/user');
 
 exports.index = function (req, res) {
-  res.send('not implemented yet');
+  res.send('User index not implemented yet');
 };
 
 exports.create_user = async function (req, res, next) {
