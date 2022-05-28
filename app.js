@@ -7,6 +7,10 @@ const createError = require('http-errors');
 // Start express
 const app = express();
 
+// Connect to mongoDB
+const connectToDatabase = require('./database/mongoDB_connect');
+connectToDatabase();
+
 //  Require routes
 const apiRouter = require('./routes/api');
 
