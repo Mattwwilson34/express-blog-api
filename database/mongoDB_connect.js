@@ -14,7 +14,12 @@ const connectToDatabase = () => {
   // Connect to mongoDB
   mongoose
     .connect(mongoDatabaseUrl, options)
-    .then(() => console.log('\x1b[33m%s\x1b[0m', 'Connected to MongoDB'));
+    .then(() =>
+      console.log(
+        '\x1b[33m%s\x1b[0m',
+        'Connected to MongoDB express-blog-api cluster0'
+      )
+    );
 
   // Bind connection errors so they print to console
   mongoose.connection.on(
