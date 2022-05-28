@@ -9,7 +9,7 @@ const UserSchema = new Schema({
   email: { type: String, required: true, maxLength: 100 },
   first_name: { type: String, required: true, maxLength: 100 },
   last_name: { type: String, required: true, maxLength: 100 },
-  age: { type: Number, required: true },
+  DOB: { type: Number, required: true },
   date_joined: { type: Date, default: new Date() },
   blog_posts: [{ type: Schema.Types.ObjectId, ref: 'Blog_Post' }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
