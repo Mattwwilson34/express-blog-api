@@ -10,6 +10,9 @@ const CommentSchema = new Schema({
   blog_post: { type: Schema.Types.ObjectId, ref: 'Blog_Post' },
 });
 
+//! ===Virtuals===
+
+// Formatted date_published to mm/dd/yyyy
 CommentSchema.virtual('date_yyyy_mm_dd').get(function () {
   return DateTime.fromJSDate(this.date_published).toLocaleString({
     year: 'numeric',
@@ -18,6 +21,7 @@ CommentSchema.virtual('date_yyyy_mm_dd').get(function () {
   });
 });
 
+// Formated date_published to hours:minutes AM/PM
 CommentSchema.virtual('time_hour_min').get(function () {
   return DateTime.fromJSDate(this.date_published).toLocaleString({
     hour: 'numeric',
