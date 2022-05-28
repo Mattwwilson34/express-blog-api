@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 
 const Blog_PostSchema = new Schema({
   title: { type: String, required: true, maxLength: 100 },
-  text: { type: String, required: true, maxLength: 1000 },
+  text: { type: String, required: true, maxLength: 5000 },
   published: { type: Boolean, required: true, default: false },
   date_published: { type: Date, default: new Date() },
   author: { type: Schema.Types.ObjectId, ref: 'User' },
