@@ -4,6 +4,7 @@ const router = express.Router();
 // Require controller modules
 const user_controller = require('../controllers/userController');
 const blog_post_controller = require('../controllers/blogController');
+const comment_controller = require('../controllers/commentController');
 
 //! ===USER ROUTES=== //
 
@@ -42,13 +43,13 @@ router.delete('blog_post/:id');
 //! ===COMMENT ROUTES=== //
 
 // Index of all comments
-router.get('/comment');
+router.get('/comment', comment_controller.index);
 
 // Get single comment
 router.get('/comment:id');
 
 // Create comment
-router.post('/comment');
+router.post('/comment', comment_controller.create_comment);
 
 // Update comment
 router.put('/comment:id');
