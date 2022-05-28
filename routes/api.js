@@ -3,6 +3,7 @@ const router = express.Router();
 
 // Require controller modules
 const user_controller = require('../controllers/userController');
+const blog_post_controller = require('../controllers/blogController');
 
 //! ===USER ROUTES=== //
 
@@ -30,7 +31,7 @@ router.get('/blog_post');
 router.get('/blog_post:id');
 
 // Create blog_post
-router.post('/blog_post');
+router.post('/blog_post', blog_post_controller.create_blog_post);
 
 // Update blog_post
 router.put('/blog_post:id');
