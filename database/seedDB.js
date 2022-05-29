@@ -1,17 +1,17 @@
 // Require mongoose + db connection
-const mongoose = require('mongoose');
-const connectToDatabase = require('./mongoDB_connect');
+import mongoose from 'mongoose';
+import connectToDatabase from './mongoDB_connect.js';
 
-const emoji = require('node-emoji');
+import emoji from 'node-emoji';
 
 // Require models
-const User = require('../models/user');
-const Blog_Post = require('../models/blog_post');
-const Comment = require('../models/comment');
+import User from '../models/user.js';
+import Blog_Post from '../models/blog_post.js';
+import Comment from '../models/comment.js';
 
 // Require additional libraries
-const LoremIpsum = require('lorem-ipsum').LoremIpsum;
-const DateGenerator = require('random-date-generator');
+import { LoremIpsum } from 'lorem-ipsum';
+import DateGenerator from 'random-date-generator';
 
 // Lorem settings
 const lorem = new LoremIpsum({
