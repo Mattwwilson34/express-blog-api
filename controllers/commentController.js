@@ -6,7 +6,6 @@ exports.index = function (req, res) {
 };
 
 exports.create_comment = async function (req, res, next) {
-  await new Comment({ text: 'test' }).save();
-
-  res.send('Create Comment route not implemented');
+  const comment = new Comment({ text: 'Hello!!' });
+  res.send(comment.time_hour_min);
 };
