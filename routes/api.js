@@ -3,7 +3,7 @@ const router = express.Router();
 
 // Require controller modules
 const user_controller = require('../controllers/userController');
-const blog_post_controller = require('../controllers/blogController');
+const blog_post_controller = require('../controllers/blogController.js');
 const comment_controller = require('../controllers/commentController');
 
 //! ===USER ROUTES=== //
@@ -12,16 +12,16 @@ const comment_controller = require('../controllers/commentController');
 router.get('/user', user_controller.index);
 
 // Get single user
-router.get('/user:id');
+router.get('/user/:id', user_controller.get_user);
 
 // Create user
 router.post('/user', user_controller.create_user);
 
 // Update user
-router.put('/user:id');
+router.put('/user/:id', user_controller.update_user);
 
 // Delete user
-router.delete('user/:id');
+router.delete('/user/:id', user_controller.delete_user);
 
 //! ===BLOG_POST ROUTES=== //
 
@@ -29,16 +29,16 @@ router.delete('user/:id');
 router.get('/blog_post', blog_post_controller.index);
 
 // Get single blog_post
-router.get('/blog_post:id');
+router.get('/blog_post/:id', blog_post_controller.get_blog_post);
 
 // Create blog_post
 router.post('/blog_post', blog_post_controller.create_blog_post);
 
 // Update blog_post
-router.put('/blog_post:id');
+router.put('/blog_post/:id', blog_post_controller.update_blog_post);
 
 // Delete blog_post
-router.delete('blog_post/:id');
+router.delete('/blog_post/:id', blog_post_controller.delete_blog_post);
 
 //! ===COMMENT ROUTES=== //
 
