@@ -46,16 +46,16 @@ router.delete('/blog_post/:id', blog_post_controller.delete_blog_post);
 router.get('/comment', comment_controller.index);
 
 // Get single comment
-router.get('/comment:id');
+router.get('/comment/:id', comment_controller.get_comment);
 
 // Create comment
 router.post('/comment', comment_controller.create_comment);
 
 // Update comment
-router.put('/comment:id');
+router.put('/comment/:id', comment_controller.update_comment);
 
 // Delete comment
-router.delete('comment/:id');
+router.delete('/comment/:id', comment_controller.delete_comment);
 
 // Export
 module.exports = router;
