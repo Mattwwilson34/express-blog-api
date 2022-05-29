@@ -1,18 +1,17 @@
 //! Dependencies
-const express = require('express');
-require('dotenv').config();
-const morgan = require('morgan');
-const createError = require('http-errors');
+import express from 'express';
+import {} from 'dotenv/config';
+import morgan from 'morgan';
 
 // Start express
 const app = express();
 
 // Connect to mongoDB
-const connectToDatabase = require('./database/mongoDB_connect');
+import connectToDatabase from './database/mongoDB_connect.js';
 connectToDatabase();
 
 //  Require routes
-const apiRouter = require('./routes/api');
+import apiRouter from './routes/api.js';
 
 // Application middleware
 app.use(express.json());

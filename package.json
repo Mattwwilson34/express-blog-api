@@ -2,7 +2,11 @@
   "name": "express-blog-api",
   "version": "1.0.0",
   "description": "An express API to serve a personal blog front end.",
-  "main": "app.js",
+  "exports": "./app.js",
+  "type": "module",
+  "engines": {
+    "node": ">=14.16"
+  },
   "scripts": {
     "startserver": "nodemon app.js"
   },
@@ -22,6 +26,9 @@
   "homepage": "https://github.com/Mattwwilson34/express-blog-api#readme",
   "devDependencies": {
     "dotenv": "^16.0.1",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "express": "^4.18.1",
     "http-errors": "^2.0.0",
     "luxon": "^2.4.0",

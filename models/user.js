@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { DateTime } = require('luxon');
+import mongoose from 'mongoose';
+import { DateTime } from 'luxon';
 
 const Schema = mongoose.Schema;
 
@@ -26,4 +26,4 @@ UserSchema.virtual('formatted_date_joined').get(function () {
   });
 });
 
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);

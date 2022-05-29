@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { DateTime } = require('luxon');
+import mongoose from 'mongoose';
+import { DateTime } from 'luxon';
 
 const Schema = mongoose.Schema;
 
@@ -23,4 +23,4 @@ Blog_PostSchema.virtual('formatted_date_published').get(function () {
   });
 });
 
-module.exports = mongoose.model('Blog_Post', Blog_PostSchema);
+export default mongoose.model('Blog_Post', Blog_PostSchema);

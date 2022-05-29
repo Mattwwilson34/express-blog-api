@@ -1,8 +1,11 @@
+// console.log styler
+import chalk from 'chalk';
+
 // Require models
-const Blog_Post = require('../models/blog_post');
+import Blog_Post from '../models/blog_post.js';
 
 // Get index of all blog_posts
-exports.index = async function (req, res, next) {
+export function index(req, res, next) {
   Blog_Post.find({})
     .populate('author')
     .populate('comments')
@@ -12,10 +15,10 @@ exports.index = async function (req, res, next) {
       }
       res.send(blog_posts);
     });
-};
+}
 
 // Get single blog_post via ID
-exports.get_blog_post = function (req, res, next) {
+export function get_blog_post(req, res, next) {
   Blog_Post.findById(req.params.id)
     .populate('author')
     .populate('comments')
@@ -25,28 +28,33 @@ exports.get_blog_post = function (req, res, next) {
       }
       res.send(blog_post);
     });
-};
+}
 
 // Create blog_post
-exports.create_blog_post = function (req, res, next) {
+export function create_blog_post(req, res) {
   //TODO Once front end is added with update form finish this conroller
   res.send('Route/Controller to be implemented once front end it ready.');
-};
+}
 
 // Update blog_post via ID
-exports.update_blog_post = async function (req, res, next) {
+export async function update_blog_post(req, res, next) {
   const blog_post = await Blog_Post.findById(req.params.id)
     .populate('author')
     .populate('comments');
   //TODO Change what is updated once front end functinality is there
   blog_post.title =
     'This blog_post has been updated by a /blog_post/:id PUT route';
-  await blog_post.save();
+  await blog_post.save((err, blog_post) => {
+    if (err) {
+      return next(err);
+    }
+    console.log(chalk.black.bgGreen(`Successfully updated`), blog_post);
+  });
   res.send(blog_post);
-};
+}
 
 // Delete blog_post via ID
-exports.delete_blog_post = function (req, res, next) {
+export function delete_blog_post(req, res, next) {
   Blog_Post.findByIdAndDelete(req.params.id, function (err, blog_post) {
     if (err) {
       return next(err);
@@ -54,4 +62,4 @@ exports.delete_blog_post = function (req, res, next) {
     console.log('Deleted : ', blog_post);
     res.send(blog_post);
   });
-};
+}

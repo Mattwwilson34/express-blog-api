@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
 // Require controller modules
-const user_controller = require('../controllers/userController');
-const blog_post_controller = require('../controllers/blogController.js');
-const comment_controller = require('../controllers/commentController');
+import * as user_controller from '../controllers/userController.js';
+import * as blog_post_controller from '../controllers/blogController.js';
+import * as comment_controller from '../controllers/commentController.js';
 
 //! ===USER ROUTES=== //
 
@@ -58,4 +58,4 @@ router.put('/comment/:id', comment_controller.update_comment);
 router.delete('/comment/:id', comment_controller.delete_comment);
 
 // Export
-module.exports = router;
+export default router;

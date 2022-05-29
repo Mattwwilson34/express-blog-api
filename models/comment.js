@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { DateTime } = require('luxon');
+import mongoose from 'mongoose';
+import { DateTime } from 'luxon';
 
 const Schema = mongoose.Schema;
 
@@ -29,4 +29,4 @@ CommentSchema.virtual('time_hour_min').get(function () {
   });
 });
 
-module.exports = mongoose.model('Comment', CommentSchema);
+export default mongoose.model('Comment', CommentSchema);

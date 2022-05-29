@@ -1,5 +1,5 @@
-require('dotenv').config({ path: require('find-config')('.env') });
-const mongoose = require('mongoose');
+import {} from 'dotenv/config';
+import mongoose from 'mongoose';
 
 const connectToDatabase = async () => {
   // Set mongoDB connection string using env variables
@@ -35,4 +35,4 @@ const connectToDatabase = async () => {
   });
 };
 
-module.exports = connectToDatabase;
+export default connectToDatabase;
