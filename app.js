@@ -2,6 +2,7 @@
 import express from 'express';
 import {} from 'dotenv/config';
 import morgan from 'morgan';
+import cors from 'cors';
 
 // Start express
 const app = express();
@@ -14,6 +15,7 @@ connectToDatabase();
 import apiRouter from './routes/api.js';
 
 // Application middleware
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
