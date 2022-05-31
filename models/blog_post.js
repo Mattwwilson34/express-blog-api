@@ -31,7 +31,7 @@ Blog_PostSchema.virtual('formatted_date_published').get(function () {
 
 // URL slug
 Blog_PostSchema.virtual('url').get(function () {
-  return `/blog_post/${this._id}`;
+  return `/blog_posts/${this._id}`;
 });
 
 export default mongoose.model('Blog_Post', Blog_PostSchema);
