@@ -26,7 +26,7 @@ router.delete('/user/:id', user_controller.delete_user);
 //! ===BLOG_POST ROUTES=== //
 
 // Index of all blog_posts
-router.get('/blog_post', blog_post_controller.index);
+router.get('/blog_posts', blog_post_controller.index);
 
 // Get single blog_post
 router.get('/blog_post/:id', blog_post_controller.get_blog_post);
