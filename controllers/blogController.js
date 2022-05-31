@@ -21,7 +21,13 @@ export function index(req, res, next) {
 export function get_blog_post(req, res, next) {
   Blog_Post.findById(req.params.id)
     .populate('author')
-    .populate('comments')
+    .populate({
+      path: 'comments',
+      populate: {
+        path: 'author',
+        model: 'User',
+      },
+    })
     .exec(function (err, blog_post) {
       if (err) {
         return next(err);
