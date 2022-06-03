@@ -1,8 +1,10 @@
 // console.log styler
 import chalk from 'chalk';
+import emoji from 'node-emoji';
 
 // Require models
 import Comment from '../models/comment.js';
+import Blog from '../models/blog_post.js';
 
 // Get index of all comments
 export function index(req, res, next) {
@@ -31,9 +33,35 @@ export function get_comment(req, res, next) {
 }
 
 // Create comment
-export function create_comment(req, res) {
-  //TODO Once front end is added with update form finish this conroller
-  res.send('Route/Controller to be implemented once front end it ready.');
+export async function create_comment(req, res, next) {
+  // Create new Comment model
+  const newComment = new Comment(req.body);
+
+  // Update blogpost with new comment
+  const blog = await Blog.findById(req.body.blog_post);
+  blog.comments.push(newComment._id);
+  blog.save((error) => {
+    if (error) return next(error);
+    console.log(chalk.green('Blog updated'), emoji.get('white_check_mark'));
+  });
+
+  // Save comment to database
+  newComment.save(function (error) {
+    if (error) {
+      res.send(
+        JSON.stringify({
+          message: 'Error saving comment on server side',
+          error,
+        })
+      );
+      return next(error);
+    }
+    console.log(
+      chalk.green('New Comment saved to DB'),
+      emoji.get('white_check_mark')
+    );
+    res.send(JSON.stringify('Comment successful!'));
+  });
 }
 
 // Update comment via ID
