@@ -5,8 +5,6 @@ const connectToDatabase = async () => {
   // Set mongoDB connection string using env variables
   const mongoDatabaseUrl = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.z162m.mongodb.net/?retryWrites=true&w=majority`;
 
-  const deleteMeLater = null;
-
   // Connections Options
   const options = {
     useNewUrlParser: true,
