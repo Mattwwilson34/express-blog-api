@@ -5,6 +5,7 @@ const router = express.Router();
 import * as user_controller from '../controllers/userController.js';
 import * as blog_post_controller from '../controllers/blogController.js';
 import * as comment_controller from '../controllers/commentController.js';
+import * as login_controller from '../controllers/loginController.js';
 
 //! ===USER ROUTES=== //
 
@@ -56,6 +57,9 @@ router.put('/comment/:id', comment_controller.update_comment);
 
 // Delete comment
 router.delete('/comment/:id', comment_controller.delete_comment);
+
+//! ===LOGIN ROUTES=== //
+router.post('/login', login_controller.login);
 
 // Export
 export default router;
