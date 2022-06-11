@@ -2,16 +2,17 @@
 import mongoose from 'mongoose';
 import connectToDatabase from './mongoDB_connect.js';
 
-import emoji from 'node-emoji';
-
 // Require models
 import User from '../models/user.js';
 import Blog_Post from '../models/blog_post.js';
 import Comment from '../models/comment.js';
 
 // Require additional libraries
+import 'dotenv/config';
 import { LoremIpsum } from 'lorem-ipsum';
 import DateGenerator from 'random-date-generator';
+import emoji from 'node-emoji';
+import chalk from 'chalk';
 
 // Lorem settings
 const lorem = new LoremIpsum({
@@ -141,35 +142,29 @@ const seedDB = async () => {
 
   // Delete all current DB documents
   await User.deleteMany({});
-  console.log('\x1b[31m%s\x1b[0m', 'Users Deleted', emoji.get('boom'));
+  console.log(chalk.red('Users Deleted'), emoji.get('boom'));
   await Blog_Post.deleteMany({});
-  console.log('\x1b[31m%s\x1b[0m', 'Blogs Deleted', emoji.get('boom'));
+  console.log(chalk.red('Blogs Deleted'), emoji.get('boom'));
   await Comment.deleteMany({});
-  console.log('\x1b[31m%s\x1b[0m', 'Comments Deleted', emoji.get('boom'));
+  console.log(chalk.red('Comments Deleted'), emoji.get('boom'));
 
   // Save created DB documents
+
+  // User models
   await User.insertMany(userModels);
-  console.log(
-    '\x1b[32m%s\x1b[0m',
-    'Users Saved',
-    emoji.get('white_check_mark')
-  );
+  console.log(chalk.green('Users Saved'), emoji.get('white_check_mark'));
+
+  // Blog posts
   await Blog_Post.insertMany(blog_posts);
-  console.log(
-    '\x1b[32m%s\x1b[0m',
-    'Blog Posts Saved',
-    emoji.get('white_check_mark')
-  );
+  console.log(chalk.green('Blog Posts Saved'), emoji.get('white_check_mark'));
+
+  // Comments
   await Comment.insertMany(comments);
-  console.log(
-    '\x1b[32m%s\x1b[0m',
-    'Comments Saved',
-    emoji.get('white_check_mark')
-  );
+  console.log(chalk.green('Comments Saved'), emoji.get('white_check_mark'));
 
   // Close DB connection
   mongoose.connection.close(() => {
-    console.log('\x1b[33m%s\x1b[0m', 'MongoDB connections succesfully closed');
+    console.log(chalk.cyan('MongoDB connections succesfully closed'));
   });
 };
 
