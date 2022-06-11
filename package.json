@@ -38,6 +38,7 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "chalk": "^5.0.1",
     "cors": "^2.8.5",
     "find-config": "^1.0.0",
