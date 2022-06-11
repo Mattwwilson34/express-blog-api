@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-// Custome middleware
+// Custom middleware
 
 // Use routes
 app.use('/', apiRouter);
