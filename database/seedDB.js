@@ -150,8 +150,13 @@ const seedDB = async () => {
 
   // Save created DB documents
 
-  // User models
-  await User.insertMany(userModels);
+  /**
+   * User models
+   * Must save individual users due to model middleware not being
+   * available on `insertMany()' thus bcrypt middleware wont run
+   */
+  await userModels[0].save();
+  await userModels[1].save();
   console.log(chalk.green('Users Saved'), emoji.get('white_check_mark'));
 
   // Blog posts
