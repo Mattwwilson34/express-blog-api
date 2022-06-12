@@ -1,5 +1,9 @@
 import express from 'express';
 const router = express.Router();
+import jwt from 'jsonwebtoken';
+
+// utils
+import verifyToken from '../utils/middleware/verifyJsonToken.js';
 
 // Require controller modules
 import * as user_controller from '../controllers/userController.js';
@@ -59,7 +63,23 @@ router.put('/comment/:id', comment_controller.update_comment);
 router.delete('/comment/:id', comment_controller.delete_comment);
 
 //! ===LOGIN ROUTES=== //
+
+// Login POST
 router.post('/login', login_controller.login);
+
+//! ===SECURE ROUTES=== //
+router.get('/profile', verifyToken, (req, res) => {
+  jwt.verify(req.token, 'secretkey', (err, authData) => {
+    if (err) {
+      res.sendStatus(403);
+    } else {
+      res.json({
+        message: 'You made it to the secure route',
+        authData,
+      });
+    }
+  });
+});
 
 // Export
 export default router;
