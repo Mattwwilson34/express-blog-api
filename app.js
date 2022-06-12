@@ -20,10 +20,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-// Custom middleware
-
 // Use routes
 app.use('/', apiRouter);
+
+// Handle errors
+app.use(function (err, req, res) {
+  res.status(err.status || 500);
+  res.json({ error: err });
+});
 
 app.listen(process.env.PORT, () =>
   console.log(
