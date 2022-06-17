@@ -38,10 +38,15 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "chalk": "^5.0.1",
     "cors": "^2.8.5",
     "find-config": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
     "lorem-ipsum": "^2.0.4",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "random-date-generator": "^1.0.2"
   }
 }
