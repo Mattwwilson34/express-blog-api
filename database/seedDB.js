@@ -57,12 +57,23 @@ const users = [
     blog_posts: [],
     comments: [],
   },
+  {
+    username: 'Anonymous',
+    password: 'Shadow45!',
+    email: 'Anonymous@Anonymous.com',
+    first_name: 'A.',
+    last_name: 'Anonymous',
+    DOB: new Date(3 / 17 / 1993),
+    date_joined: new Date(4 / 11 / 2021),
+    blog_posts: [],
+    comments: [],
+  },
 ];
 
 const getBlogPost = () => {
   return {
     title: lorem.generateWords(6),
-    text: lorem.generateParagraphs(5),
+    text: lorem.generateParagraphs(10),
     published: false,
     date_published: DateGenerator.getRandomDate(),
     author: [],
@@ -83,7 +94,11 @@ const seedDB = async () => {
   //! ===Create arrays of models====
 
   // get array of user models
-  const userModels = [new User(users[0]), new User(users[1])];
+  const userModels = [
+    new User(users[0]),
+    new User(users[1]),
+    new User(users[2]),
+  ];
 
   // get array of blog-post models
   const blog_posts = [];
@@ -157,6 +172,7 @@ const seedDB = async () => {
    */
   await userModels[0].save();
   await userModels[1].save();
+  await userModels[2].save();
   console.log(chalk.green('Users Saved'), emoji.get('white_check_mark'));
 
   // Blog posts
