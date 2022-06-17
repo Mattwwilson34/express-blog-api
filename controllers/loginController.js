@@ -22,6 +22,11 @@ export async function login(req, res, next) {
   jwt.sign({ user }, 'secretkey', (err, token) => {
     res.json({
       token,
+      user: {
+        username: user.username,
+        first_name: user.first_name,
+        last_name: user.last_name,
+      },
     });
   });
 }
