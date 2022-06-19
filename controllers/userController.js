@@ -32,7 +32,17 @@ export function get_user(req, res, next) {
 
 // Create user
 export async function create_user(req, res, next) {
-  const formData = req.body;
+  // Check for valid userRegistration data
+  if (!req.body.userRegistrationData) {
+    console.log(chalk.bgBlack.red('Error, no Registration data in req.body!'));
+    res.send(
+      JSON.stringify({
+        message: 'Error, registration form data not recieved by server!',
+      })
+    );
+  }
+
+  const formData = req.body.userRegistrationData;
 
   // Delete confirmPassword field b/c it is not needed
   delete formData.confirmPassword;
