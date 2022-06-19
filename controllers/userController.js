@@ -32,7 +32,8 @@ export function get_user(req, res, next) {
 
 // Create user
 export async function create_user(req, res, next) {
-  // Check for valid userRegistration data
+  //
+  // Check userRegistration data exists
   if (!req.body.userRegistrationData) {
     console.log(chalk.bgBlack.red('Error, no Registration data in req.body!'));
     res.send(
