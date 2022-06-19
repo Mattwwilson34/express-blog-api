@@ -1,7 +1,3 @@
-// console.log styler
-import chalk from 'chalk';
-import emoji from 'node-emoji';
-
 // Require models
 import Comment from '../models/comment.js';
 import Blog from '../models/blog_post.js';
@@ -42,7 +38,6 @@ export async function create_comment(req, res, next) {
   blog.comments.push(newComment._id);
   blog.save((error) => {
     if (error) return next(error);
-    console.log(chalk.green('Blog updated'), emoji.get('white_check_mark'));
   });
 
   // Save comment to database
@@ -56,10 +51,6 @@ export async function create_comment(req, res, next) {
       );
       return next(error);
     }
-    console.log(
-      chalk.green('New Comment saved to DB'),
-      emoji.get('white_check_mark')
-    );
     res.send(JSON.stringify('Comment successful!'));
   });
 }
@@ -69,13 +60,11 @@ export async function update_comment(req, res, next) {
   const comment = await Comment.findById(req.params.id)
     .populate('blog_post')
     .populate('author');
-  //TODO Change what is updated once front end functinality is there
   comment.text = 'This user has been updated by a /user/:id PUT route';
-  await comment.save((err, comment) => {
+  await comment.save((err) => {
     if (err) {
       return next(err);
     }
-    console.log(chalk.black.bgGreen(`Successfully updated`), comment);
   });
   res.send(comment);
 }

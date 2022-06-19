@@ -1,6 +1,3 @@
-// console.log styler
-import chalk from 'chalk';
-
 // Require models
 import User from '../models/user.js';
 
@@ -35,7 +32,7 @@ export async function create_user(req, res, next) {
   //
   // Check userRegistration data exists
   if (!req.body.userRegistrationData) {
-    console.log(chalk.bgBlack.red('Error, no Registration data in req.body!'));
+    console.log('Error, no Registration data in req.body!');
     res.send(
       JSON.stringify({
         message: 'Error, registration form data not recieved by server!',
@@ -87,13 +84,12 @@ export async function update_user(req, res, next) {
   const user = await User.findById(req.params.id)
     .populate('blog_posts')
     .populate('comments');
-  //TODO Change what is updated once front end functinality is there
   user.first_name = 'This user has been updated by a /user/:id PUT route';
   await user.save((err, user) => {
     if (err) {
       return next(err);
     }
-    console.log(chalk.black.bgGreen(`Successfully updated`), user);
+    console.log(`Successfully updated`, user);
   });
   res.send(user);
 }

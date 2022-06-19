@@ -1,6 +1,5 @@
 import {} from 'dotenv/config';
 import mongoose from 'mongoose';
-import chalk from 'chalk';
 
 const connectToDatabase = async () => {
   // Set mongoDB connection string using env variables
@@ -17,7 +16,7 @@ const connectToDatabase = async () => {
 
   // Print on success
   mongoose.connection.on('connected', () =>
-    console.log(chalk.magenta('Connected to MongoDB express-blog-api cluster0'))
+    console.log('Connected to MongoDB express-blog-api cluster0')
   );
 
   // Handle errors
