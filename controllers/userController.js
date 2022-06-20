@@ -54,7 +54,9 @@ export async function create_user(req, res, next) {
 
     // Username already exists in DB -> return error to frontend
     if (user !== null) {
-      res.send(JSON.stringify({ message: 'Username already exists' }));
+      res
+        .status(400)
+        .send(JSON.stringify({ message: 'Username already exists' }));
     }
     // User name doesn't exist -> create + save user to DB
     else {
