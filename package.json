@@ -8,8 +8,8 @@
     "node": ">=14.16"
   },
   "scripts": {
-    "startserver": "nodemon app.js",
-    "test": "jest --verbose"
+    "startserver": "nodemon server.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --config --watchAll --detectOpenHandles"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/Mattwwilson34/express-blog-api#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.18.2",
+    "@shelf/jest-mongodb": "^3.0.1",
     "@types/jest": "^28.1.2",
     "dotenv": "^16.0.1",
     "eslint": "^8.16.0",
