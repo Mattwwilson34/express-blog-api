@@ -14,7 +14,7 @@ export function index(req, res, next) {
     });
 }
 
-// Get singe user via ID
+// Get single user via ID
 export function get_user(req, res, next) {
   User.findById(req.params.id)
     .populate('blog_posts')
@@ -82,18 +82,24 @@ export async function create_user(req, res, next) {
 }
 
 // Update user via ID
-export async function update_user(req, res, next) {
-  const user = await User.findById(req.params.id)
-    .populate('blog_posts')
-    .populate('comments');
-  user.first_name = 'This user has been updated by a /user/:id PUT route';
-  await user.save((err, user) => {
-    if (err) {
-      return next(err);
-    }
-    console.log(`Successfully updated`, user);
+export function update_user(req, res, next) {
+  //
+  // Get id from params
+  const id = req.params.id;
+
+  // Get user from DB for update
+  User.findById(id, function (err, user) {
+    if (err) return next(err);
+
+    // Update user data
+    user.first_name = 'This MAN!! has been updated by a /user/:id PUT route';
+
+    // Re-save user to DB
+    user.save((err, user) => {
+      if (err) return next(err);
+      res.status(200).send(user);
+    });
   });
-  res.send(user);
 }
 
 // Delete user via ID
